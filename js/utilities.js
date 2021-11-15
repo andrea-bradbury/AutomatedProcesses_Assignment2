@@ -34,6 +34,35 @@ var U = {
     }
   },
 
+  //Function for creating event listeners
+  addEvent: function(obj, type, fn) {
+    'use strict';
+
+    if (obj && obj.addEventListener()) {
+      //This is for modern browsers
+      obj.addEventListener(type,fn,false);
+    }
+    else if (obj && obj.attachEvent()) {
+      //This is for older browsers
+      obj.attachEvent('on' + type, fn);
+    }
+  },
+
+  //Function for removing event listeners
+  removeEvent: function(obj, type, fn) {
+    'use strict';
+
+    if (obj && obj.removeEventListener()) {
+      //New browsers
+      obj.removeEventListener(type, fn, false);
+
+    }
+    else if (obj && obj.detachEvent()) {
+      //Older browsers
+      obj.detachEvent('on' + type, fn);
+    }
+  },
+
   //Enable tooltips
   enableToolTips: function(id) {
     'use strict';
@@ -78,3 +107,6 @@ var U = {
   },
 
 };
+
+
+

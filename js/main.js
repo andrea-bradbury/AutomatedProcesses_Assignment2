@@ -20,11 +20,9 @@ class Product {
 }
 
 
-var dataList ;
+var orderList = [];
 
-var orderList =[];
-
-var orderSummary;
+var orderSummary = "";
 
 var total = 0;
 
@@ -127,6 +125,7 @@ function addToQuote(e) {
 
   //First identify all add to quote buttons
   if (e.srcElement.className == 'addToQuoteButton'){
+
     //Save event clicked id to variable
     var eventClickedId = e.srcElement.id;
 
@@ -141,16 +140,52 @@ function addToQuote(e) {
         //Provide alert for user so they know the item is added
         alert(listOfProducts[idTurnedToArrayIndex].productName + "\nhas been added to your cart.");
 
-        //Remove button so the user knows their product has been added
-        //var element = document.getElementById(eventClickedId);
-        //element.parentNode.removeChild(element);
+        //Create a button to delete from quote
+        var removeFromQuoteButton = '<a href="#" id="00'+listOfProducts[idTurnedToArrayIndex].productId+'" class="removeFromQuoteButton">Remove From Quote</a>';
+        var row = document.getElementById("rows");
+        var buttonY = document.createElement('button');
+        buttonY.innerHTML = removeFromQuoteButton;
+        row.appendChild(buttonY);
 
+        //Add event listener for the remove from quote button
+        document.addEventListener("click", removeFromQuote);
 
+        console.log(orderList);
+
+      }
+    }
+  }
+}
+
+function removeFromQuote(e) {
+  //Validating that this event should only fire when the remove from quote button is clicked
+
+  //First identify all remove from quote buttons
+  if (e.srcElement.className == 'removeFromQuoteButton'){
+
+    //Save event clicked id to variable
+    var eventClickedId = e.srcElement.id;
+
+    //Format id for index of array
+    var idTurnedToArrayIndex = formatIdForIndexOfArray(eventClickedId);
+
+    //Add to orderList
+    for (let i=0; i < listOfProducts.length; i++){
+      if (idTurnedToArrayIndex == i) {
+        orderList.splice(listOfProducts[idTurnedToArrayIndex],1);
+
+        //Provide alert for user so they know the item is removed
+        alert(listOfProducts[idTurnedToArrayIndex].productName + "\nhas been removed from your cart.");
 
       }
     }
 
+    //Remove button so the user knows their product has been added
+    var element = document.getElementById(eventClickedId);
+    element.parentNode.removeChild(element);
   }
+
+  console.log(orderList);
 }
 
 
@@ -163,18 +198,21 @@ function createQuote(e) {
     var total = 0;
 
     for (let i=0; i< orderList.length; i++) {
-      if (i == 'undefined' ){
-        continue;
-      }
-      else{
-        //Create order summary
-        orderSummary += "Product: " + orderList[i].productName + "\n" +
-          "New Release: " + orderList[i].newValue + "\n" +
-          "Type: " + orderList[i].productType + "\n" +
-          "Price: $" + orderList[i].productPrice.toFixed(2) + "\n\n";
 
-        total += orderList[i].productPrice;
+      //To fix formatting of bools
+      if (orderList[i].newRelease == true) {
+        orderList[i].newRelease = "Yes";
       }
+      else {
+        orderList[i].newRelease = "No";
+      }
+      //Create order summary
+      orderSummary += "Product: " + orderList[i].productName + "\n" +
+        "New Release: " + orderList[i].newRelease + "\n" +
+        "Type: " + orderList[i].productType + "\n" +
+        "Price: $" + orderList[i].productPrice.toFixed(2) + "\n\n";
+
+      total += orderList[i].productPrice;
 
     }
     alert(orderSummary + "\n" + "Total: $" + total.toFixed(2));
@@ -182,7 +220,6 @@ function createQuote(e) {
 }
 
 //For removing the add to cart button
-
 Element.prototype.remove = function() {
   this.parentElement.removeChild(this);
 }
@@ -195,10 +232,10 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
 }
 
 
+
 //This function inserts the tool tip span into the HTML doc
 function setupToolTips(id, msg) {
   let newID = id + 'tip';
-
   document.getElementById(newID).innerHTML = msg;
   document.getElementById(newID).style.visibility = "hidden";
 
@@ -208,18 +245,19 @@ function setupToolTips(id, msg) {
 window.onload = function() {
   'use strict'
 
+  //Load Json data into the menu
   loadJSONData();
 
-  //Get the id from the link clicked in the menu
+  //Set up link clicked in the menu
   document.addEventListener("click", selectedLink);
+  //Set up get quote button
   document.addEventListener("click", createQuote);
 
 
-
   //Enable tool tips on the get quote button
-  enableToolTips('submit');
+  U.enableToolTips('submit');
 
-  submittip.setText('submit', 'When you are ready to get your order click here');
+  setupToolTips('submit', 'When you are ready to get your order click here');
 
 
 }
