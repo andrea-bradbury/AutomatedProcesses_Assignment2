@@ -17,7 +17,7 @@ header {
   padding-top: 10px;
   padding-bottom: 10px;
   width: 139px;
-  text-align: center;
+  text-align: left;
   color: rgba(255,255,255,1.00);
 
 }
@@ -61,7 +61,7 @@ header {
   width: 20%;
   padding-left: 3%;
   padding-right: 3%;
-  text-align: center;
+  text-align: left;
   background-color: rgba(246,246,246,1.00);
   padding-top: 36px;
   height: 784px;
@@ -70,9 +70,32 @@ header {
 #content .mainContent {
   float: left;
   width: 70%;
-  text-align: center;
+  text-align: left;
   padding-left: 4%;
 }
+
+button {
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  clear: both;
+}
+
+#submit {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  clear:left;
+}
+
 /*menubar's properties for menus in sidebar */
 #content .sidebar #menubar {
   text-align: left;
@@ -85,7 +108,7 @@ header {
   width: 100%;
   border-radius: 0px;
   height: 42px;
-  text-align: center;
+  text-align: left;
   color: rgba(208,207,207,1.00);
   font-size: 14px;
   margin-bottom: 21px;
@@ -158,7 +181,7 @@ header {
   line-height: 1.8;
   padding-top: 22px;
   padding-left: 22px;
-  text-align: center;
+  text-align: left;
   padding-bottom: 22px;
   padding-right: 22px;
 }
@@ -176,7 +199,7 @@ footer div a {
   color: rgba(146,146,146,1.00);
   display: block;
   text-decoration: none;
-  text-align: center;
+  text-align: left;
 }
 /* Product's images in catalog */
 .productInfo div img {
@@ -259,7 +282,7 @@ footer .footerlinks {
   /* menus in sidebar */
   .sidebar #menubar .menu {
     width: 100%;
-    text-align: center;
+    text-align: left;
     position: relative;
     top: 16px;
   }
@@ -300,7 +323,7 @@ footer .footerlinks {
     position: relative;
     top: 17px;
     clear: both;
-    text-align: center;
+    text-align: left;
     left: 0%;
     padding-bottom: 19px;
   }
@@ -342,31 +365,31 @@ footer .footerlinks {
   /*Container for links in header */
   #mainWrapper header #headerLinks {
     width: 100%;
-    text-align: center;
+    text-align: left;
     background-color: rgba(190,190,190,1.00);
     padding-bottom: 21px;
   }
   /* Logo placeholder*/
   #mainWrapper header #logo {
     width: 100%;
-    text-align: center;
+    text-align: left;
   }
   /* Links in header */
   header #headerLinks a {
-    text-align: center;
+    text-align: left;
     padding-right: 15px;
     padding-left: 0px;
   }
   /*Offer - Text Banner */
   #mainWrapper #offer {
     padding-left: 0px;
-    text-align: center;
+    text-align: left;
   }
   /* Menubar in sidebar */
   #content .sidebar #menubar {
     position: relative;
     left: -8%;
-    text-align: center;
+    text-align: left;
   }
   /*Menu headings in sidebar */
   #menubar .menu h1 {
@@ -403,7 +426,7 @@ footer .footerlinks {
   /* Main content which excludes the sidebar */
   #mainwrapper #content .mainContent {
     margin-top: -81px;
-    text-align: center;
+    text-align: left;
     width: 100%;
     padding-left: 0px;
   }

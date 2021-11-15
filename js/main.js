@@ -90,7 +90,7 @@ function selectedLink(e) {
     var idTurnedToArrayIndex = formatIdForIndexOfArray(clickedObjectId);
     console.log(listOfProducts[idTurnedToArrayIndex])
 
-    var item = '<p id="'+listOfProducts[idTurnedToArrayIndex].productId+'+item">Product: '+listOfProducts[idTurnedToArrayIndex].productName+', Price: $'+listOfProducts[idTurnedToArrayIndex].productPrice+'</p>';
+    var item = '<p id="'+listOfProducts[idTurnedToArrayIndex].productId+'+item">Product: '+listOfProducts[idTurnedToArrayIndex].productName+', Price: $'+listOfProducts[idTurnedToArrayIndex].productPrice.toFixed(2)+'</p>';
     var row = document.getElementById("rows");
     var p = document.createElement("p");
     p.innerHTML = item;
@@ -133,11 +133,20 @@ function addToQuote(e) {
     //Format id for index of array
     var idTurnedToArrayIndex = formatIdForIndexOfArray(eventClickedId);
 
+    //Add to orderList
     for (let i=0; i < listOfProducts.length; i++){
       if (idTurnedToArrayIndex == i) {
         orderList.push(listOfProducts[idTurnedToArrayIndex]);
-        var element = document.getElementById(eventClickedId);
-        element.parentNode.removeChild(element);
+
+        //Provide alert for user so they know the item is added
+        alert(listOfProducts[idTurnedToArrayIndex].productName + "\nhas been added to your cart.");
+
+        //Remove button so the user knows their product has been added
+        //var element = document.getElementById(eventClickedId);
+        //element.parentNode.removeChild(element);
+
+
+
       }
     }
 
@@ -162,16 +171,17 @@ function createQuote(e) {
         orderSummary += "Product: " + orderList[i].productName + "\n" +
           "New Release: " + orderList[i].newValue + "\n" +
           "Type: " + orderList[i].productType + "\n" +
-          "Price: $" + orderList[i].productPrice + "\n\n";
+          "Price: $" + orderList[i].productPrice.toFixed(2) + "\n\n";
 
         total += orderList[i].productPrice;
       }
 
     }
-    alert(orderSummary + "\n" + "Total: $" + total);
+    alert(orderSummary + "\n" + "Total: $" + total.toFixed(2));
   }
 }
 
+//For removing the add to cart button
 
 Element.prototype.remove = function() {
   this.parentElement.removeChild(this);
@@ -207,9 +217,9 @@ window.onload = function() {
 
 
   //Enable tool tips on the get quote button
-  //U.enableToolTips('submit');
+  enableToolTips('submit');
 
-  //setupToolTips('submit', 'When you are ready to get your order click here');
+  submittip.setText('submit', 'When you are ready to get your order click here');
 
 
 }

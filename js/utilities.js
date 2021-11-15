@@ -35,7 +35,6 @@ var U = {
   },
 
   //Enable tooltips
-
   enableToolTips: function(id) {
     'use strict';
 
