@@ -96,7 +96,7 @@ function selectedLink(e) {
 
     //Create button to add to quote
     var addToQuoteButton = '<a href="#" id="0'+listOfProducts[idTurnedToArrayIndex].productId+'" class="addToQuoteButton">Add to Quote</a>';
-    var row = document.getElementById("rows");
+    var row = document.getElementById('rows');
     var buttonX = document.createElement('button');
     buttonX.innerHTML = addToQuoteButton;
     row.appendChild(buttonX);
@@ -135,7 +135,7 @@ function addToQuote(e) {
     //Add to orderList
     for (let i=0; i < listOfProducts.length; i++){
       if (idTurnedToArrayIndex == i) {
-        orderList.push(listOfProducts[idTurnedToArrayIndex]);
+        orderList.push(idTurnedToArrayIndex);
 
         //Provide alert for user so they know the item is added
         alert(listOfProducts[idTurnedToArrayIndex].productName + "\nhas been added to your cart.");
@@ -150,7 +150,7 @@ function addToQuote(e) {
         //Add event listener for the remove from quote button
         document.addEventListener("click", removeFromQuote);
 
-        console.log(orderList);
+
 
       }
     }
@@ -172,7 +172,7 @@ function removeFromQuote(e) {
     //Add to orderList
     for (let i=0; i < listOfProducts.length; i++){
       if (idTurnedToArrayIndex == i) {
-        orderList.splice(listOfProducts[idTurnedToArrayIndex],1);
+        orderList.splice(listOfProducts[idTurnedToArrayIndex], 1);
 
         //Provide alert for user so they know the item is removed
         alert(listOfProducts[idTurnedToArrayIndex].productName + "\nhas been removed from your cart.");
@@ -180,12 +180,11 @@ function removeFromQuote(e) {
       }
     }
 
-    //Remove button so the user knows their product has been added
+    //Remove button as you can't remove twice
     var element = document.getElementById(eventClickedId);
     element.parentNode.removeChild(element);
   }
 
-  console.log(orderList);
 }
 
 
@@ -196,23 +195,28 @@ function createQuote(e) {
 
   if (clickedButtonId == "submit") {
     var total = 0;
+    var orderSummary = "";
 
     for (let i=0; i< orderList.length; i++) {
+      var x = orderList[i];
+
 
       //To fix formatting of bools
-      if (orderList[i].newRelease == true) {
-        orderList[i].newRelease = "Yes";
+      if (listOfProducts[x].newRelease == true) {
+        listOfProducts[x].newRelease = "Yes";
       }
       else {
-        orderList[i].newRelease = "No";
+        listOfProducts[x].newRelease = "No";
       }
-      //Create order summary
-      orderSummary += "Product: " + orderList[i].productName + "\n" +
-        "New Release: " + orderList[i].newRelease + "\n" +
-        "Type: " + orderList[i].productType + "\n" +
-        "Price: $" + orderList[i].productPrice.toFixed(2) + "\n\n";
 
-      total += orderList[i].productPrice;
+
+      //Create order summary
+      orderSummary += "Product: " + listOfProducts[x].productName + "\n" +
+        "New Release: " + listOfProducts[x].newRelease + "\n" +
+        "Type: " + listOfProducts[x].productType + "\n" +
+        "Price: $" + listOfProducts[x].productPrice.toFixed(2) + "\n\n";
+
+      total += listOfProducts[x].productPrice;
 
     }
     alert(orderSummary + "\n" + "Total: $" + total.toFixed(2));
@@ -244,6 +248,8 @@ function setupToolTips(id, msg) {
 
 window.onload = function() {
   'use strict'
+
+
 
   //Load Json data into the menu
   loadJSONData();
