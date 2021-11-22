@@ -4,7 +4,6 @@
 /* This is a template for a product object */
 
 class Product {
-
   constructor(productId, productName, productType, newRelease, productPrice) {
     this.productId = productId;
     this.productName =  productName;
@@ -16,9 +15,7 @@ class Product {
       this.productPrice * this.units;
     }
   }
-
 }
-
 
 var orderList = [];
 
@@ -30,10 +27,7 @@ var listOfProducts = [];
 
 const data = '{"products":[{"productId":"001","productName":"Oblivion","productType":"Movie","newRelease":true,"productPrice":6.50},{"productId":"002","productName":"Iron Man 3","productType":"Movie","newRelease":true,"productPrice":6.50},{"productId":"003","productName":"Monty Python\'s Meaning of Life", "productType":"Movie","newRelease":false,"productPrice":2.00},{"productId":"004","productName":"Star Trek into Darkness","productType":"Movie","newRelease":true,"productPrice":6.50},{"productId":"005","productName":"iRobot","productType":"Movie","newRelease":false,"productPrice":3.50}, {"productId":"006","productName":"Can\'t Hold Us (Macklemore)","productType":"Song","newRelease":true,"productPrice":3.50},{"productId":"007","productName":"Mirrors (Justin Timberlake)","productType":"Song","newRelease":true,"productPrice":3.50},{"productId":"008","productName":"Can\'t touch this (MC Hammer)","productType":"Song","newRelease":false,"productPrice": 1.50},{"productId":"009","productName": "Spirit Got Lost (Mental as Anything)","productType":"Song","newRelease":false,"productPrice":0.99},{"productId":"010","productName":"Only Happy when it Rains (Garbage)","productType":"Song","newRelease":false,"productPrice":0.99},{"productId":"011","productName":"Bangarang (Skrillex)","productType":"Song","newRelease":true,"productPrice":2.50},{"productId":"012","productName":"Splinter (Savant)","productType":"Song","newRelease":true,"productPrice":3.00}]}';
 
-
-
 function loadJSONData() {
-
   //Parse JSON Data
   dataList = JSON.parse(data);
 
@@ -66,6 +60,7 @@ function loadJSONData() {
     }
     else {
       //Error in data
+      alert("There was an issue. Check your data file.");
     }
 
   }
@@ -106,14 +101,13 @@ function selectedLink(e) {
 
   }
   else {
-    //Nothing
+    alert("There was an issue.");
   }
 
 }
 
 function formatIdForIndexOfArray(id) {
   var placeInList = 0;
-
   placeInList= 1*id;
 
   return placeInList-1;
@@ -149,9 +143,6 @@ function addToQuote(e) {
 
         //Add event listener for the remove from quote button
         document.addEventListener("click", removeFromQuote);
-
-
-
       }
     }
   }
@@ -176,13 +167,12 @@ function removeFromQuote(e) {
 
         //Provide alert for user so they know the item is removed
         alert(listOfProducts[idTurnedToArrayIndex].productName + "\nhas been removed from your cart.");
-
       }
     }
 
     //Remove button as you can't remove twice
     var element = document.getElementById(eventClickedId);
-    element.parentNode.removeChild(element);
+    element.remove();
   }
 
 }
@@ -200,7 +190,6 @@ function createQuote(e) {
     for (let i=0; i< orderList.length; i++) {
       var x = orderList[i];
 
-
       //To fix formatting of bools
       if (listOfProducts[x].newRelease == true) {
         listOfProducts[x].newRelease = "Yes";
@@ -208,8 +197,6 @@ function createQuote(e) {
       else {
         listOfProducts[x].newRelease = "No";
       }
-
-
       //Create order summary
       orderSummary += "Product: " + listOfProducts[x].productName + "\n" +
         "New Release: " + listOfProducts[x].newRelease + "\n" +
@@ -217,14 +204,10 @@ function createQuote(e) {
         "Price: $" + listOfProducts[x].productPrice.toFixed(2) + "\n\n";
 
       total += listOfProducts[x].productPrice;
-
     }
     alert(orderSummary + "\n" + "Total: $" + total.toFixed(2));
   }
 }
-
-
-
 
 
 //This function inserts the tool tip span into the HTML doc
@@ -241,7 +224,6 @@ function submitButtonToolTip() {
 
   //Render initialized Button component
   button.innerHTML(+ 'class="tooltip"');
-
 }
 
 
