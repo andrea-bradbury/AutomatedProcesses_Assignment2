@@ -245,6 +245,15 @@ function setupToolTips(id, msg) {
 
 }
 
+function submitButtonToolTip() {
+  //Get submit button
+  var button = document.getElementById("submit");
+
+  //Render initialized Button component
+  button.innerHTML(+ 'class="tooltip"');
+
+}
+
 
 window.onload = function() {
   'use strict'
@@ -259,11 +268,6 @@ window.onload = function() {
   //Set up get quote button
   document.addEventListener("click", createQuote);
 
-
-  //Enable tool tips on the get quote button
-  U.enableToolTips('submit');
-
-  setupToolTips('submit', 'When you are ready to get your order click here');
 
 
 }

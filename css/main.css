@@ -93,8 +93,8 @@ p {
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px;
-  clear:left;
 }
+
 
 /*menubar's properties for menus in sidebar */
 #content .sidebar #menubar {
@@ -251,9 +251,9 @@ footer .footerlinks {
   /* Position the tooltip text */
   position: absolute;
   z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -60px;
+  bottom: 90%;
+  left: 0;
+
 
   /* Fade in tooltip */
   opacity: 0;
