@@ -60,7 +60,6 @@ function loadJSONData() {
     }
     else {
       //Error in data
-      alert("There was an issue. Check your data file.");
     }
 
   }
@@ -101,7 +100,7 @@ function selectedLink(e) {
 
   }
   else {
-    alert("There was an issue.");
+    //No else required
   }
 
 }
